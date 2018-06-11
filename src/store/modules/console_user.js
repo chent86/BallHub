@@ -1,4 +1,4 @@
-import { login, logout, getLoginInfo, register } from '@/api/console_users';
+import { login, logout, getLoginInfo, register, updateLoginInfo } from '@/api/console_users';
 import Cookies from 'js-cookie';
 
 const user = {
@@ -96,7 +96,6 @@ const user = {
     // Cookies 登录
     GetLoginInfo({ commit }) {
       return new Promise((resolve, reject) => {
-        console.log('login with cookies');
         getLoginInfo().then(response => {
           commit('SET_USERNAME', response.username);
           commit('SET_AGE', response.age);
@@ -119,6 +118,17 @@ const user = {
           resolve();
         }).catch(error => {
           // console.log(error);
+          reject(error);
+        });
+      });
+    },
+
+    // 更新用户信息
+    UpdateLoginInfo({ commit }, userInfo) {
+      return new Promise((resolve, reject) => {
+        updateLoginInfo(userInfo).then(response => {
+          resolve();
+        }).catch(error => {
           reject(error);
         });
       });

@@ -36,7 +36,7 @@ export const constantRouterMap = [
       path: 'dashboard',
       name: 'dashboard',
       component: () => import('@/views/dashboard'),
-      meta: { title: '控制台', icon: 'dashboard' }
+      meta: { title: '主页', icon: 'dashboard' }
     }]
   },
 
@@ -63,6 +63,17 @@ export const constantRouterMap = [
   //     meta: { title: '课程管理', icon: 'book' }
   //   }]
   // },
+
+  {
+    path: '/setting',
+    component: Layout,
+    children: [{
+      path: 'index',
+      name: 'Setting',
+      component: () => import('@/views/setting'),
+      meta: { title: '个人设置', icon: 'form' }
+    }]
+  },
 
   {
     path: '/form',

@@ -47,3 +47,14 @@ export function register(username, password, role) {
     }
   });
 }
+
+export function updateLoginInfo(userInfo) {
+  return request({
+    url: '/api/updateLoginInfo',
+    method: 'post',
+    data: {
+      cookies: Cookies.get('userInfo'),
+      userInfo
+    }
+  });
+}
