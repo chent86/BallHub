@@ -58,3 +58,13 @@ export function updateLoginInfo(userInfo) {
     }
   });
 }
+
+export function updatePassword(userInfo) {
+  return request({
+    url: '/api/updatePassword',
+    method: 'post',
+    data: {
+      userInfo
+    }
+  });
+}

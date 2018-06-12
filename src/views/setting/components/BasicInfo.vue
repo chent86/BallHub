@@ -1,37 +1,37 @@
 <template>
   <div class="app-container">
     <el-form label-width="120px">
-      <el-form-item label="Username">
+      <el-form-item label="用户名">
         <el-input v-bind:value="username" :disabled="true"></el-input>
       </el-form-item>
-      <el-form-item label="Age" v-if="age_seen">
+      <el-form-item label="年龄" v-if="age_seen">
         <el-input type="text" v-model="age_entry"></el-input>
       </el-form-item>
-      <el-form-item label="Sex" v-if="sex_seen">
+      <el-form-item label="性别" v-if="sex_seen">
         <el-radio-group v-model="sex_entry" >
-          <el-radio label="male"></el-radio>
-          <el-radio label="female"></el-radio>
+          <el-radio label="male">男</el-radio>
+          <el-radio label="female">女</el-radio>
         </el-radio-group>
       </el-form-item>
-      <el-form-item label="Price" v-if="price_seen" prop="price_entry">
+      <el-form-item label="费用" v-if="price_seen" prop="price_entry">
         <el-input v-model="price_entry"></el-input>
       </el-form-item>
-      <el-form-item label="Team name" v-if="team_name_seen" prop="team_name">
+      <el-form-item label="队名" v-if="team_name_seen" prop="team_name">
         <el-input v-model="team_name_entry"></el-input>
       </el-form-item>            
-      <el-form-item label="Free Time">
+      <el-form-item label="空闲时间">
         <el-select v-model="free_time_entry" placeholder="please select your zone">
-          <el-option label="Monday" value="Mon"></el-option>
-          <el-option label="Tuesday" value="Tue"></el-option>
-          <el-option label="Wednesday" value="Wed"></el-option>
-          <el-option label="Thursday" value="Thu"></el-option>
-          <el-option label="Friday" value="Fri"></el-option>
-          <el-option label="Saturday" value="Sat"></el-option>
-          <el-option label="Sunday" value="Sun"></el-option>
+          <el-option label="星期一" value="Mon"></el-option>
+          <el-option label="星期二" value="Tue"></el-option>
+          <el-option label="星期三" value="Wed"></el-option>
+          <el-option label="星期四" value="Thu"></el-option>
+          <el-option label="星期五" value="Fri"></el-option>
+          <el-option label="星期六" value="Sat"></el-option>
+          <el-option label="星期天" value="Sun"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="onSubmit">Update</el-button>
+        <el-button type="primary" @click="onSubmit">更新</el-button>
       </el-form-item>
     </el-form>      
   </div>
@@ -67,10 +67,10 @@ export default {
           'team_name': this.team_name
         }).then(() => {
           this.loading = false;
-          this.$message.success('Update!');
+          this.$message.success('成功修改信息!');
         }).catch(() => {
           this.loading = false;
-          this.$message.error('Update error!');
+          this.$message.error('修改失败!');
         });
       }
     }

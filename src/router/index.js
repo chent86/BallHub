@@ -70,7 +70,7 @@ export const constantRouterMap = [
     children: [{
       path: 'index',
       name: 'Setting',
-      component: () => import('@/views/setting'),
+      component: () => import('@/views/setting/setting'),
       meta: { title: '个人设置', icon: 'form' }
     }]
   },

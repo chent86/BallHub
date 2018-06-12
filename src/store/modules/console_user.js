@@ -1,4 +1,4 @@
-import { login, logout, getLoginInfo, register, updateLoginInfo } from '@/api/console_users';
+import { login, logout, getLoginInfo, register, updateLoginInfo, updatePassword } from '@/api/console_users';
 import Cookies from 'js-cookie';
 
 const user = {
@@ -128,6 +128,18 @@ const user = {
       return new Promise((resolve, reject) => {
         updateLoginInfo(userInfo).then(response => {
           resolve();
+        }).catch(error => {
+          reject(error);
+        });
+      });
+    },
+
+    // 更新密码
+    UpdatePassword({ commit }, userInfo) {
+      return new Promise((resolve, reject) => {
+        console.log(userInfo);
+        updatePassword(userInfo).then(response => {
+          resolve(response);
         }).catch(error => {
           reject(error);
         });
