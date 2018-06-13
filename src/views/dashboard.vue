@@ -1,12 +1,13 @@
 <template>
   <div class="dashboard-container">
-    <div class="dashboard-text">name:{{username}}</div>
-    <div class="dashboard-text" v-if="age_seen">age:{{age}}</div>
+    <div class="dashboard-text">name:{{name}}</div>
+    <div class="dashboard-text">birthday or founded day:{{birthday}}</div>
     <div class="dashboard-text" v-if="sex_seen">sex:{{sex}}</div>
-    <div class="dashboard-text">free time:{{free_time}}</div>
+    <div class="dashboard-text">free time1:{{free_time_1}}</div>
+    <div class="dashboard-text">free time2:{{free_time_2}}</div>
     <div class="dashboard-text">role:{{role}}</div>
     <div class="dashboard-text" v-if="price_seen">price:{{price}}</div>
-    <div class="dashboard-text" v-if="team_name_seen">team name:{{team_name}}</div>
+    <div class="dashboard-text" v-if="motto_seen">team motto:{{motto}}</div>
   </div>
 </template>
 
@@ -17,22 +18,20 @@ export default {
   name: 'dashboard',
   computed: {
     ...mapGetters([
-      'username',
-      'age',
+      'name',
+      'birthday',
       'sex',
-      'free_time',
+      'free_time_1',
+      'free_time_2',
       'role',
       'price',
-      'team_name'
+      'motto'
     ]),
-    team_name_seen: function() {
+    motto_seen: function() {
       return this.role === 'team';
     },
     price_seen: function() {
       return this.role === 'referee';
-    },
-    age_seen: function() {
-      return this.role !== 'team';
     },
     sex_seen: function() {
       return this.role !== 'team';

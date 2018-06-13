@@ -1,17 +1,18 @@
-import { login, logout, getLoginInfo, register, updateLoginInfo, updatePassword } from '@/api/console_users';
+import { test, login, logout, getLoginInfo, register, updateLoginInfo, updatePassword } from '@/api/console_users';
 import Cookies from 'js-cookie';
 
 const user = {
   state: {
     info: {
       user_id: null,
-      username: null,
-      age: null,
+      name: null,
+      birthday: null,
       sex: null,
-      free_time: null,
+      free_time_1: null, // 周几
+      free_time_2: null, // 上午，下午，晚上
       role: null,
       price: null,
-      team_name: null
+      motto: null
     },
     auth: false
   },
@@ -20,17 +21,20 @@ const user = {
     SET_USERID: (state, user_id) => {
       state.info.user_id = user_id;
     },
-    SET_USERNAME: (state, username) => {
-      state.info.username = username;
+    SET_NAME: (state, name) => {
+      state.info.name = name;
     },
-    SET_AGE: (state, age) => {
-      state.info.age = age;
+    SET_BIRTHDAY: (state, birthday) => {
+      state.info.birthday = birthday;
     },
     SET_SEX: (state, sex) => {
       state.info.sex = sex;
     },
-    SET_FREE_TIME: (state, free_time) => {
-      state.info.free_time = free_time;
+    SET_FREE_TIME_1: (state, free_time_1) => {
+      state.info.free_time_1 = free_time_1;
+    },
+    SET_FREE_TIME_2: (state, free_time_2) => {
+      state.info.free_time_2 = free_time_2;
     },
     SET_ROLE: (state, role) => {
       state.info.role = role;
@@ -38,8 +42,8 @@ const user = {
     SET_PRICE: (state, price) => {
       state.info.price = price;
     },
-    SET_TEAM_NAME: (state, team_name) => {
-      state.info.team_name = team_name;
+    SET_MOTTO: (state, motto) => {
+      state.info.motto = motto;
     },
     SET_AUTH: (state, auth) => {
       state.auth = auth;
@@ -52,14 +56,18 @@ const user = {
       const username = userInfo.username.trim();
       return new Promise((resolve, reject) => {
         login(username, userInfo.password).then(response => {
-          Cookies.set('userInfo', response);
-          commit('SET_USERNAME', response.username);
-          commit('SET_AGE', response.age);
+          Cookies.set('userInfo', {
+            'username': response.username,
+            'password': response.password
+          });
+          commit('SET_NAME', response.name);
+          commit('SET_BIRTHDAY', response.birthday);
           commit('SET_SEX', response.sex);
-          commit('SET_FREE_TIME', response.free_time);
+          commit('SET_FREE_TIME_1', response.free_time1);
+          commit('SET_FREE_TIME_2', response.free_time2);
           commit('SET_ROLE', response.role);
           commit('SET_PRICE', response.price);
-          commit('SET_TEAM_NAME', response.team_name);
+          commit('SET_MOTTO', response.motto);
           commit('SET_AUTH', true);
           resolve();
         }).catch(error => {
@@ -83,11 +91,14 @@ const user = {
     // 前端 登出
     FeLogOut({ commit }) {
       return new Promise(resolve => {
-        commit('SET_USERID', null);
-        commit('SET_USERNAME', null);
-        commit('SET_AGE', null);
+        commit('SET_NAME', null);
+        commit('SET_BIRTHDAY', null);
         commit('SET_SEX', null);
-        commit('SET_FREE_TIME', null);
+        commit('SET_FREE_TIME_1', null);
+        commit('SET_FREE_TIME_2', null);
+        commit('SET_ROLE', null);
+        commit('SET_PRICE', null);
+        commit('SET_MOTTO', null);
         commit('SET_AUTH', false);
         Cookies.remove('userInfo');
         resolve();
@@ -97,13 +108,14 @@ const user = {
     GetLoginInfo({ commit }) {
       return new Promise((resolve, reject) => {
         getLoginInfo().then(response => {
-          commit('SET_USERNAME', response.username);
-          commit('SET_AGE', response.age);
+          commit('SET_NAME', response.name);
+          commit('SET_BIRTHDAY', response.birthday);
           commit('SET_SEX', response.sex);
-          commit('SET_FREE_TIME', response.free_time);
+          commit('SET_FREE_TIME_1', response.free_time1);
+          commit('SET_FREE_TIME_2', response.free_time2);
           commit('SET_ROLE', response.role);
           commit('SET_PRICE', response.price);
-          commit('SET_TEAM_NAME', response.team_name);
+          commit('SET_MOTTO', response.motto);
           commit('SET_AUTH', true);
           resolve();
         }).catch((err) => reject(err));
@@ -144,7 +156,19 @@ const user = {
           reject(error);
         });
       });
+    },
+
+    Test({ commit }, userInfo) {
+      return new Promise((resolve, reject) => {
+        console.log(userInfo);
+        test(userInfo).then(response => {
+          resolve(response);
+        }).catch(error => {
+          reject(error);
+        });
+      });
     }
+    
   }
 };
 

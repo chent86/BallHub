@@ -68,3 +68,13 @@ export function updatePassword(userInfo) {
     }
   });
 }
+
+export function test(userInfo) {
+  return request({
+    url: '/api/test',
+    method: 'post',
+    data: {
+      userInfo
+    }
+  });
+}

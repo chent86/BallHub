@@ -65,6 +65,7 @@ export default {
   },
   methods: {
     onSubmit() {
+      this.$store.dispatch('Test', this.form);
       this.$message('submit!');
     },
     onCancel() {
