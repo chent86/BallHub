@@ -34,10 +34,11 @@ export default {
   computed: {
     ...mapGetters([
       'sidebar',
-      'user_id'
+      // 'user_id'
     ]),
     avatarSrc() {
-      return `/api/auth/${this.user_id}/avatar`;
+      // return `/api/auth/${this.user_id}/avatar`;
+      return `/api/auth/0/avatar`;
     }
   },
   methods: {

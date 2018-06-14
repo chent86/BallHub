@@ -1,7 +1,7 @@
 const getters = {
   sidebar: state => state.app.sidebar,
   name: state => state.console_user.info.name,
-  user_id: state => state.console_user.info.user_id,
+  username: state => state.console_user.info.username,
   birthday: state => state.console_user.info.birthday,
   sex: state => state.console_user.info.sex,
   free_time_1: state => state.console_user.info.free_time_1,

@@ -63,7 +63,8 @@ import Component from 'vue-class-component';
 })
 export default class UserItem extends Vue {
   get avatarSrc() {
-    return `/api/users/${this.user.user_id}/avatar`;
+    // return `/api/users/${this.user.user_id}/avatar`;
+    return `/api/auth/0/avatar`;
   }
 }
 </script>

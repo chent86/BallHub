@@ -12,13 +12,6 @@ export function login(username, password) {
   });
 }
 
-export function getInfo(user_id) {
-  return request({
-    url: '/api/auth/' + user_id || '0',
-    method: 'get'
-  });
-}
-
 export function logout() {
   return request({
     url: '/api/logout',
@@ -62,16 +55,6 @@ export function updateLoginInfo(userInfo) {
 export function updatePassword(userInfo) {
   return request({
     url: '/api/updatePassword',
-    method: 'post',
-    data: {
-      userInfo
-    }
-  });
-}
-
-export function test(userInfo) {
-  return request({
-    url: '/api/test',
     method: 'post',
     data: {
       userInfo

@@ -1,10 +1,10 @@
-import { test, login, logout, getLoginInfo, register, updateLoginInfo, updatePassword } from '@/api/console_users';
+import { login, logout, getLoginInfo, register, updateLoginInfo, updatePassword } from '@/api/console_users';
 import Cookies from 'js-cookie';
 
 const user = {
   state: {
     info: {
-      user_id: null,
+      username: null,
       name: null,
       birthday: null,
       sex: null,
@@ -18,8 +18,8 @@ const user = {
   },
 
   mutations: {
-    SET_USERID: (state, user_id) => {
-      state.info.user_id = user_id;
+    SET_USERNAME: (state, username) => {
+      state.info.username = username;
     },
     SET_NAME: (state, name) => {
       state.info.name = name;
@@ -61,17 +61,20 @@ const user = {
             'password': response.password
           });
           commit('SET_NAME', response.name);
-          commit('SET_BIRTHDAY', response.birthday);
+          if (response.birthday !== null) {
+            commit('SET_BIRTHDAY', response.birthday.substr(0, 10));
+          }
+          commit('SET_USERNAME', response.username);
           commit('SET_SEX', response.sex);
-          commit('SET_FREE_TIME_1', response.free_time1);
-          commit('SET_FREE_TIME_2', response.free_time2);
+          commit('SET_FREE_TIME_1', response.free_time_1);
+          commit('SET_FREE_TIME_2', response.free_time_2);
           commit('SET_ROLE', response.role);
           commit('SET_PRICE', response.price);
           commit('SET_MOTTO', response.motto);
           commit('SET_AUTH', true);
           resolve();
         }).catch(error => {
-          // console.log(error);
+          console.log(error);
           reject(error);
         });
       });
@@ -91,6 +94,7 @@ const user = {
     // 前端 登出
     FeLogOut({ commit }) {
       return new Promise(resolve => {
+        commit('SET_USERNAME', null);
         commit('SET_NAME', null);
         commit('SET_BIRTHDAY', null);
         commit('SET_SEX', null);
@@ -109,10 +113,13 @@ const user = {
       return new Promise((resolve, reject) => {
         getLoginInfo().then(response => {
           commit('SET_NAME', response.name);
-          commit('SET_BIRTHDAY', response.birthday);
+          if (response.birthday !== null) {
+            commit('SET_BIRTHDAY', response.birthday.substr(0, 10));
+          }
+          commit('SET_USERNAME', response.username);
           commit('SET_SEX', response.sex);
-          commit('SET_FREE_TIME_1', response.free_time1);
-          commit('SET_FREE_TIME_2', response.free_time2);
+          commit('SET_FREE_TIME_1', response.free_time_1);
+          commit('SET_FREE_TIME_2', response.free_time_2);
           commit('SET_ROLE', response.role);
           commit('SET_PRICE', response.price);
           commit('SET_MOTTO', response.motto);
@@ -156,19 +163,7 @@ const user = {
           reject(error);
         });
       });
-    },
-
-    Test({ commit }, userInfo) {
-      return new Promise((resolve, reject) => {
-        console.log(userInfo);
-        test(userInfo).then(response => {
-          resolve(response);
-        }).catch(error => {
-          reject(error);
-        });
-      });
     }
-    
   }
 };
 
