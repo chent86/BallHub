@@ -79,12 +79,19 @@ export default class Login extends Vue {
     this.$refs.loginForm.validate(valid => {
       if (valid) {
         this.loading = true;
-        this.$store.dispatch('Register', this.loginForm).then(() => {
+        this.$store.dispatch('Register', this.loginForm).then((res) => {
           this.loading = false;
-          this.$router.push({ path: '/login' });
-        }).catch(() => {
+          if (res === 'ok') {
+            this.$router.push({ path: '/login' });
+          } else {
+            this.$message.error('用户名已被注册!');
+          }
+          this.loginForm.username = '';
+          this.loginForm.password = '';
+          this.loginForm.role = '';
+        }).catch((err) => {
           this.loading = false;
-          this.$message.error('Username has been used!');
+          console.log(err);
         });
       } else {
         return false;

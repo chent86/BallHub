@@ -1,4 +1,4 @@
-import { login, logout, getLoginInfo, register, updateLoginInfo, updatePassword, deleteUser } from '@/api/console_users';
+import { login, logout, getLoginInfo, register, updateLoginInfo, updatePassword, deleteUser, getMyGame, organizeGame } from '@/api/console_users';
 import Cookies from 'js-cookie';
 
 const user = {
@@ -12,7 +12,8 @@ const user = {
       free_time_2: null, // 上午，下午，晚上
       role: null,
       price: null,
-      motto: null
+      motto: null,
+      myGame_tableInfo: {}
     },
     auth: false
   },
@@ -47,6 +48,9 @@ const user = {
     },
     SET_AUTH: (state, auth) => {
       state.auth = auth;
+    },
+    SET_MY_GAME_TABLE_INFO: (state, myGame_tableInfo) => {
+      state.myGame_tableInfo = myGame_tableInfo;
     }
   },
 
@@ -134,7 +138,7 @@ const user = {
       const username = userInfo.username.trim();
       return new Promise((resolve, reject) => {
         register(username, userInfo.password, userInfo.role).then(response => {
-          resolve();
+          resolve(response);
         }).catch(error => {
           // console.log(error);
           reject(error);
@@ -169,6 +173,29 @@ const user = {
     DeleteUser({ commit }) {
       return new Promise((resolve, reject) => {
         deleteUser().then(response => {
+          resolve(response);
+        }).catch(error => {
+          reject(error);
+        });
+      });
+    },
+
+    // 获取我的球局
+    GetMyGame({ commit }) {
+      return new Promise((resolve, reject) => {
+        getMyGame().then(response => {
+          commit('SET_MY_GAME_TABLE_INFO', response);
+          resolve();
+        }).catch(error => {
+          reject(error);
+        });
+      });
+    },
+
+    // 发起球局
+    OrganizeGame({ commit }, gameInfo) {
+      return new Promise((resolve, reject) => {
+        organizeGame(gameInfo).then(response => {
           resolve(response);
         }).catch(error => {
           reject(error);

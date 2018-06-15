@@ -10,5 +10,6 @@ const getters = {
   price: state => state.console_user.info.price,
   motto: state => state.console_user.info.motto,
   auth: state => state.console_user.auth,
+  myGame_tableInfo: state => state.console_user.myGame_tableInfo
 };
 export default getters;

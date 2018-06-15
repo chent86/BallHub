@@ -71,3 +71,21 @@ export function deleteUser() {
     }
   });
 }
+
+export function getMyGame() {
+  return request({
+    url: '/api/getMyGame',
+    method: 'post'
+  });
+}
+
+export function organizeGame(gameInfo) {
+  return request({
+    url: '/api/organizeGame',
+    method: 'post',
+    data: {
+      cookies: Cookies.get('userInfo'),
+      gameInfo
+    }
+  });
+}

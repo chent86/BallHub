@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import store from '../store';
 
 // in development-env not use lazy-loading, because lazy-loading too many pages will cause webpack hot update too slow. so only in production use lazy-loading;
 // detail: https://panjiachen.github.io/vue-element-admin-site/#/lazy-loading
@@ -35,8 +36,17 @@ export const constantRouterMap = [
     children: [{
       path: 'dashboard',
       name: 'dashboard',
-      component: () => import('@/views/dashboard'),
-      meta: { title: '主页', icon: 'dashboard' }
+      component: () => import('@/views/homepage/Homepage'),
+      beforeEnter: (to, from, next) => {
+        store.dispatch('GetMyGame').then((res) => {
+          this.loading = false;
+          next();
+        }).catch((err) => {
+          this.loading = false;
+          console.log(err);
+        });
+      },
+      meta: { title: '主页', icon: 'basketball' }
     }]
   },
 
@@ -65,13 +75,33 @@ export const constantRouterMap = [
   // },
 
   {
+    path: '/myGame',
+    component: Layout,
+    children: [{
+      path: 'index',
+      name: 'myGame',
+      component: () => import('@/views/game'),
+      beforeEnter: (to, from, next) => {
+        store.dispatch('GetMyGame').then((res) => {
+          this.loading = false;
+          next();
+        }).catch((err) => {
+          this.loading = false;
+          console.log(err);
+        });
+      },
+      meta: { title: '我的球局', icon: 'calendar' }
+    }]
+  },
+
+  {
     path: '/setting',
     component: Layout,
     children: [{
       path: 'index',
       name: 'Setting',
       component: () => import('@/views/setting/setting'),
-      meta: { title: '个人设置', icon: 'form' }
+      meta: { title: '个人设置', icon: 'settings' }
     }]
   },
 
