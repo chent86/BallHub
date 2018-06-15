@@ -44,8 +44,8 @@ service.interceptors.response.use(
   },
   error => {
     if (error.response.status === 401) {
-      console.log('未认证');
-      console.log(error.request.responseURL);
+      // console.log('未认证');
+      // console.log(error.request.responseURL);
       if (router.currentRoute.path !== '/login') {
         store.dispatch('FeLogOut').then(() => {
           router.push({ path: '/login' });

@@ -34,7 +34,6 @@ router.beforeEach((to, from, next) => {
       }
     }).catch((err) => {
       if (err.response.status === 401) {
-        console.log('未登录');
         if (from.path === '/login') {
           next({ path: '/login' });
         }

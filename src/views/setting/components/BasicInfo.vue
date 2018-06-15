@@ -84,9 +84,14 @@ export default {
           'free_time_2': this.free_time_2,
           'price': this.price,
           'motto': this.motto
-        }).then(() => {
+        }).then((res) => {
+          console.log(res);
           this.loading = false;
-          this.$message.success('成功修改信息!');
+          if (res === 'error') {
+            this.$message.error('修改失败!');
+          } else {
+            this.$message.success('成功修改信息!');
+          }
         }).catch(() => {
           this.loading = false;
           this.$message.error('修改失败!');

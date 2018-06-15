@@ -61,3 +61,13 @@ export function updatePassword(userInfo) {
     }
   });
 }
+
+export function deleteUser() {
+  return request({
+    url: '/api/deleteUser',
+    method: 'post',
+    data: {
+      cookies: Cookies.get('userInfo')
+    }
+  });
+}

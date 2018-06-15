@@ -15,17 +15,19 @@
 <script>
 import BasisInfo from './components/BasicInfo';
 import UpdatePassword from './components/UpdatePassword';
+import DeleteUser from './components/DeleteUser';
 
 export default {
   components: {
     BasisInfo,
-    UpdatePassword
+    UpdatePassword,
+    DeleteUser
   },
   data() {
     return {
       currentTab: 'BasisInfo',
-      tabs: ['BasisInfo', 'UpdatePassword'],
-      buttonName: { 'BasisInfo': '基本信息', 'UpdatePassword': '修改密码' }
+      tabs: ['BasisInfo', 'UpdatePassword', 'DeleteUser'],
+      buttonName: { 'BasisInfo': '基本信息', 'UpdatePassword': '修改密码', 'DeleteUser': '注销用户' }
     };
   },
   computed: {

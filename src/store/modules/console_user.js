@@ -1,4 +1,4 @@
-import { login, logout, getLoginInfo, register, updateLoginInfo, updatePassword } from '@/api/console_users';
+import { login, logout, getLoginInfo, register, updateLoginInfo, updatePassword, deleteUser } from '@/api/console_users';
 import Cookies from 'js-cookie';
 
 const user = {
@@ -146,7 +146,7 @@ const user = {
     UpdateLoginInfo({ commit }, userInfo) {
       return new Promise((resolve, reject) => {
         updateLoginInfo(userInfo).then(response => {
-          resolve();
+          resolve(response);
         }).catch(error => {
           reject(error);
         });
@@ -158,6 +158,17 @@ const user = {
       return new Promise((resolve, reject) => {
         console.log(userInfo);
         updatePassword(userInfo).then(response => {
+          resolve(response);
+        }).catch(error => {
+          reject(error);
+        });
+      });
+    },
+
+    // 注销用户
+    DeleteUser({ commit }) {
+      return new Promise((resolve, reject) => {
+        deleteUser().then(response => {
           resolve(response);
         }).catch(error => {
           reject(error);

@@ -93,7 +93,6 @@ export default class Login extends Vue {
   }
 
   gotoLogin() {
-    console.log('go to login');
     this.$store.state.auth = false;
     this.$router.push({ path: '/login' });
   }
