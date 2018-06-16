@@ -1,4 +1,4 @@
-import { login, logout, getLoginInfo, register, updateLoginInfo, updatePassword, deleteUser, getMyGame, organizeGame } from '@/api/console_users';
+import { login, logout, getLoginInfo, register, updateLoginInfo, updatePassword, deleteUser, getMyGame, organizeGame, getAllGame, joinGame, quitGame } from '@/api/console_users';
 import Cookies from 'js-cookie';
 
 const user = {
@@ -13,7 +13,8 @@ const user = {
       role: null,
       price: null,
       motto: null,
-      myGame_tableInfo: {}
+      myGame_tableInfo: [],
+      allGame_tableInfo: []
     },
     auth: false
   },
@@ -50,7 +51,10 @@ const user = {
       state.auth = auth;
     },
     SET_MY_GAME_TABLE_INFO: (state, myGame_tableInfo) => {
-      state.myGame_tableInfo = myGame_tableInfo;
+      state.info.myGame_tableInfo = myGame_tableInfo;
+    },
+    SET_ALL_GAME_TABLE_INFO: (state, allGame_tableInfo) => {
+      state.info.allGame_tableInfo = allGame_tableInfo;
     }
   },
 
@@ -192,10 +196,44 @@ const user = {
       });
     },
 
+    // 获取所有球局
+    GetAllGame({ commit }) {
+      return new Promise((resolve, reject) => {
+        getAllGame().then(response => {
+          commit('SET_ALL_GAME_TABLE_INFO', response);
+          resolve();
+        }).catch(error => {
+          reject(error);
+        });
+      });
+    },
+
     // 发起球局
     OrganizeGame({ commit }, gameInfo) {
       return new Promise((resolve, reject) => {
         organizeGame(gameInfo).then(response => {
+          resolve(response);
+        }).catch(error => {
+          reject(error);
+        });
+      });
+    },
+
+    // 加入球局
+    JoinGame({ commit }, gameInfo) {
+      return new Promise((resolve, reject) => {
+        joinGame(gameInfo).then(response => {
+          resolve(response);
+        }).catch(error => {
+          reject(error);
+        });
+      });
+    },
+
+    // 退出球局
+    QuitGame({ commit }, gameInfo) {
+      return new Promise((resolve, reject) => {
+        quitGame(gameInfo).then(response => {
           resolve(response);
         }).catch(error => {
           reject(error);

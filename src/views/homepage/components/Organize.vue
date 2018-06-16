@@ -49,6 +49,7 @@ export default {
         this.form.number = '';
         if (res === 'ok') {
           this.$message.success('成功发起球局!');
+          this.$store.dispatch('GetAllGame');
         } else {
           this.$message.error('发起球局失败!');
         }
@@ -56,7 +57,6 @@ export default {
         this.loading = false;
         console.log(err);
       });
-      this.$message('submit!');
     }
   }
 };

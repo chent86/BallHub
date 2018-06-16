@@ -38,7 +38,7 @@ export const constantRouterMap = [
       name: 'dashboard',
       component: () => import('@/views/homepage/Homepage'),
       beforeEnter: (to, from, next) => {
-        store.dispatch('GetMyGame').then((res) => {
+        store.dispatch('GetAllGame').then((res) => {
           this.loading = false;
           next();
         }).catch((err) => {
@@ -49,30 +49,6 @@ export const constantRouterMap = [
       meta: { title: '主页', icon: 'basketball' }
     }]
   },
-
-  // {
-  //   path: '/operate',
-  //   component: Layout,
-  //   redirect: '/operate/users',
-  //   name: 'operate',
-  //   meta: { title: '运营管理', icon: 'database' },
-  //   children: [{
-  //     path: 'users',
-  //     name: 'users',
-  //     component: () => import('@/views/user/userManage'),
-  //     meta: { title: '用户管理', icon: 'user' }
-  //   }, {
-  //     path: 'users/:userId',
-  //     name: 'userDetail',
-  //     component: () => import('@/views/user/userDetail'),
-  //     hidden: true
-  //   }, {
-  //     path: 'courses',
-  //     name: 'courses',
-  //     component: () => null,
-  //     meta: { title: '课程管理', icon: 'book' }
-  //   }]
-  // },
 
   {
     path: '/myGame',
