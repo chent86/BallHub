@@ -17,13 +17,13 @@ npm i
 npm start
 ```
 
-##生产环境部署
+## 生产环境部署
 ```
 npm build
 sudo cp -r dist /usr/share/nginx
 ```
 
-##nginx 配置
+## nginx 配置
 ```
 sudo cp nginx/BallHub.conf /etc/nginx/conf.d
 sudo nginx -s reload

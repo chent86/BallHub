@@ -6,12 +6,12 @@
       </el-form-item>
       <el-form-item label="生日" v-if="people_seen">
         <el-col :span="11">
-          <el-date-picker value-format="yyyy-MM-dd" type="date" placeholder="Pick a date" v-model="birthday_entry" style="width: 100%;"></el-date-picker>
+          <el-date-picker value-format="yyyy-MM-dd" type="date" placeholder="Pick a date" v-model="birthday_entry" style="width: 200px;"></el-date-picker>
         </el-col>
       </el-form-item>
       <el-form-item label="成立时间" v-if="team_seen">
         <el-col :span="11">
-          <el-date-picker value-format="yyyy-MM-dd" type="date" placeholder="Pick a date" v-model="birthday_entry" style="width: 100%;"></el-date-picker>
+          <el-date-picker value-format="yyyy-MM-dd" type="date" placeholder="Pick a date" v-model="birthday_entry" style="width: 200px;"></el-date-picker>
         </el-col>
       </el-form-item>
       <el-form-item label="性别" v-if="people_seen">
@@ -85,7 +85,6 @@ export default {
           'price': this.price,
           'motto': this.motto
         }).then((res) => {
-          console.log(res);
           this.loading = false;
           if (res === 'error') {
             this.$message.error('修改失败!');

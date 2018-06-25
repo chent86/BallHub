@@ -57,6 +57,7 @@ export function updatePassword(userInfo) {
     url: '/api/updatePassword',
     method: 'post',
     data: {
+      cookies: Cookies.get('userInfo'),
       userInfo
     }
   });
