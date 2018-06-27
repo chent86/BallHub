@@ -22,7 +22,6 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import Cookies from 'js-cookie';
 const validate = (value) => {
   if (value.length < 5) {
     return 'short';
@@ -73,10 +72,6 @@ export default {
           this.loading = false;
           if (res === 'ok') {
             this.$message.success('成功修改密码!');
-            Cookies.set('userInfo', {
-              'username': this.username,
-              'password': this.form.new_pass
-            });
           } else if (res === 'error') {
             this.$message.error('修改失败!');
           }

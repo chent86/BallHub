@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <el-table :data="myGame_tableInfo" style="width: 100%">
-      <el-table-column prop="gid" label="编号" width="100" sortable>
+      <el-table-column prop="gid" label="球局编号" width="100" sortable>
       </el-table-column>
        <el-table-column prop="start_time" label="开始时间" width="180" sortable>
       </el-table-column>

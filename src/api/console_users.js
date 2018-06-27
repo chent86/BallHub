@@ -1,5 +1,4 @@
 import request from '@/utils/request';
-import Cookies from 'js-cookie';
 
 export function login(username, password) {
   return request({
@@ -23,9 +22,6 @@ export function getLoginInfo() {
   return request({
     url: '/api/getUserInfo',
     method: 'post',
-    data: {
-      cookies: Cookies.get('userInfo')
-    }
   });
 }
 
@@ -46,7 +42,6 @@ export function updateLoginInfo(userInfo) {
     url: '/api/updateLoginInfo',
     method: 'post',
     data: {
-      cookies: Cookies.get('userInfo'),
       userInfo
     }
   });
@@ -57,7 +52,6 @@ export function updatePassword(userInfo) {
     url: '/api/updatePassword',
     method: 'post',
     data: {
-      cookies: Cookies.get('userInfo'),
       userInfo
     }
   });
@@ -66,10 +60,7 @@ export function updatePassword(userInfo) {
 export function deleteUser() {
   return request({
     url: '/api/deleteUser',
-    method: 'post',
-    data: {
-      cookies: Cookies.get('userInfo')
-    }
+    method: 'post'
   });
 }
 
@@ -77,19 +68,13 @@ export function getMyGame() {
   return request({
     url: '/api/getMyGame',
     method: 'post',
-    data: {
-      cookies: Cookies.get('userInfo')
-    }
   });
 }
 
 export function getAllGame() {
   return request({
     url: '/api/getAllGame',
-    method: 'post',
-    data: {
-      cookies: Cookies.get('userInfo')
-    }
+    method: 'post'
   });
 }
 
@@ -98,7 +83,6 @@ export function organizeGame(gameInfo) {
     url: '/api/organizeGame',
     method: 'post',
     data: {
-      cookies: Cookies.get('userInfo'),
       gameInfo
     }
   });
@@ -109,7 +93,6 @@ export function joinGame(gameInfo) {
     url: '/api/joinGame',
     method: 'post',
     data: {
-      cookies: Cookies.get('userInfo'),
       gameInfo
     }
   });
@@ -120,7 +103,6 @@ export function quitGame(gameInfo) {
     url: '/api/quitGame',
     method: 'post',
     data: {
-      cookies: Cookies.get('userInfo'),
       gameInfo
     }
   });

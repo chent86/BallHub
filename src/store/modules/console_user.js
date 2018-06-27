@@ -1,5 +1,4 @@
 import { login, logout, getLoginInfo, register, updateLoginInfo, updatePassword, deleteUser, getMyGame, organizeGame, getAllGame, joinGame, quitGame } from '@/api/console_users';
-import Cookies from 'js-cookie';
 
 const user = {
   state: {
@@ -64,10 +63,6 @@ const user = {
       const username = userInfo.username.trim();
       return new Promise((resolve, reject) => {
         login(username, userInfo.password).then(response => {
-          Cookies.set('userInfo', {
-            'username': response.username,
-            'password': response.password
-          });
           commit('SET_NAME', response.name);
           if (response.birthday !== null) {
             commit('SET_BIRTHDAY', response.birthday.substr(0, 10));
@@ -112,7 +107,6 @@ const user = {
         commit('SET_PRICE', null);
         commit('SET_MOTTO', null);
         commit('SET_AUTH', false);
-        Cookies.remove('userInfo');
         resolve();
       });
     },

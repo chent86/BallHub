@@ -51,12 +51,28 @@ export const constantRouterMap = [
   },
 
   {
-    path: '/myGame',
+    path: '/Game',
     component: Layout,
+    meta: { title: '球局', icon: 'player' },
     children: [{
-      path: 'index',
+      path: 'allGame',
+      name: 'allGame',
+      component: () => import('@/views/game/allGame/allGame'),
+      beforeEnter: (to, from, next) => {
+        store.dispatch('GetAllGame').then((res) => {
+          this.loading = false;
+          next();
+        }).catch((err) => {
+          this.loading = false;
+          console.log(err);
+        });
+      },
+      meta: { title: '所有球局', icon: 'peoples' }
+    },
+    {
+      path: 'myGame',
       name: 'myGame',
-      component: () => import('@/views/game'),
+      component: () => import('@/views/game/myGame'),
       beforeEnter: (to, from, next) => {
         store.dispatch('GetMyGame').then((res) => {
           this.loading = false;
@@ -66,7 +82,43 @@ export const constantRouterMap = [
           console.log(err);
         });
       },
-      meta: { title: '我的球局', icon: 'calendar' }
+      meta: { title: '我的球局', icon: 'people' }
+    }]
+  },
+
+  {
+    path: '/Court',
+    component: Layout,
+    meta: { title: '球场', icon: 'court' },
+    children: [{
+      path: 'allCourt',
+      name: 'allCourt',
+      component: () => import('@/views/court/allCourt/allCourt'),
+      beforeEnter: (to, from, next) => {
+        store.dispatch('GetAllCourt').then((res) => {
+          this.loading = false;
+          next();
+        }).catch((err) => {
+          this.loading = false;
+          console.log(err);
+        });
+      },
+      meta: { title: '所有球场', icon: 'peoples' }
+    },
+    {
+      path: 'myCourt',
+      name: 'myCourt',
+      component: () => import('@/views/court/myCourt'),
+      beforeEnter: (to, from, next) => {
+        store.dispatch('GetMyCourt').then((res) => {
+          this.loading = false;
+          next();
+        }).catch((err) => {
+          this.loading = false;
+          console.log(err);
+        });
+      },
+      meta: { title: '我的球场', icon: 'people' }
     }]
   },
 

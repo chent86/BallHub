@@ -11,6 +11,8 @@ const getters = {
   motto: state => state.console_user.info.motto,
   auth: state => state.console_user.auth,
   myGame_tableInfo: state => state.console_user.info.myGame_tableInfo,
-  allGame_tableInfo: state => state.console_user.info.allGame_tableInfo
+  allGame_tableInfo: state => state.console_user.info.allGame_tableInfo,
+  myCourt_tableInfo: state => state.court.myCourt_tableInfo,
+  allCourt_tableInfo: state => state.court.allCourt_tableInfo
 };
 export default getters;
