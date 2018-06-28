@@ -6,12 +6,12 @@
       </el-form-item>
       <el-form-item label="生日" v-if="people_seen">
         <el-col :span="11">
-          <el-date-picker value-format="yyyy-MM-dd" type="date" placeholder="Pick a date" v-model="birthday_entry" style="width: 200px;"></el-date-picker>
+          <el-date-picker value-format="yyyy-MM-dd" type="date" v-model="birthday_entry" style="width: 200px;"></el-date-picker>
         </el-col>
       </el-form-item>
       <el-form-item label="成立时间" v-if="team_seen">
         <el-col :span="11">
-          <el-date-picker value-format="yyyy-MM-dd" type="date" placeholder="Pick a date" v-model="birthday_entry" style="width: 200px;"></el-date-picker>
+          <el-date-picker value-format="yyyy-MM-dd" type="date" v-model="birthday_entry" style="width: 200px;"></el-date-picker>
         </el-col>
       </el-form-item>
       <el-form-item label="性别" v-if="people_seen">
@@ -27,8 +27,8 @@
         <el-input v-model="motto_entry" style="width: 200px;"></el-input>
       </el-form-item>            
       <el-form-item label="本周空闲时间">
-        <el-col :span="5">
-          <el-select v-model="free_time_1_entry" placeholder="please select your zone">
+        <el-col :span="4">
+          <el-select v-model="free_time_1_entry" style="width: 200px;">
             <el-option label="星期一" value="Mon"></el-option>
             <el-option label="星期二" value="Tue"></el-option>
             <el-option label="星期三" value="Wed"></el-option>
@@ -39,9 +39,10 @@
             <el-option label="无" value=NULL></el-option>
           </el-select>
         </el-col>
-        <el-col :span="2" style="text-align: center;">-</el-col>
-        <el-col :span="5">
-          <el-select v-model="free_time_2_entry" placeholder="please select your zone">
+      </el-form-item>
+      <el-form-item label="">
+        <el-col :span="3">
+          <el-select v-model="free_time_2_entry" style="width: 200px;">
             <el-option label="上午" value="Morning"></el-option>
             <el-option label="下午" value="Afternoon"></el-option>
             <el-option label="晚上" value="Evening"></el-option>
@@ -179,8 +180,5 @@ export default {
 </script>
 
 <style scoped>
-.line{
-  text-align: center;
-}
 </style>
 

@@ -4,6 +4,7 @@
         v-for="tab in tabs"
         v-bind:key="tab"
         v-on:click="currentTab = tab"
+        :type="buttonType[tab]"
     >{{ buttonName[tab] }}</el-button>
 
     <component
@@ -25,7 +26,8 @@ export default {
     return {
       currentTab: 'searchGame',
       tabs: ['searchGame', 'organizeGame'],
-      buttonName: { 'searchGame': '所有球局', 'organizeGame': '发起球局' }
+      buttonName: { 'searchGame': '所有球局', 'organizeGame': '发起球局' },
+      buttonType: { 'searchGame': 'primary', 'organizeGame': 'success' }
     };
   },
   computed: {
@@ -36,5 +38,10 @@ export default {
 };
 </script>
 
-<style scoped>
+<style rel="stylesheet/scss" lang="scss" scoped>
+.app-container{
+  background: #fff;
+  padding: 16px 16px 16px 16px; 
+  margin: 32px;
+}
 </style>

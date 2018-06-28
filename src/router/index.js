@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import store from '../store';
+// import store from '../store';
 
 // in development-env not use lazy-loading, because lazy-loading too many pages will cause webpack hot update too slow. so only in production use lazy-loading;
 // detail: https://panjiachen.github.io/vue-element-admin-site/#/lazy-loading
@@ -37,15 +37,6 @@ export const constantRouterMap = [
       path: 'dashboard',
       name: 'dashboard',
       component: () => import('@/views/homepage/Homepage'),
-      beforeEnter: (to, from, next) => {
-        store.dispatch('GetAllGame').then((res) => {
-          this.loading = false;
-          next();
-        }).catch((err) => {
-          this.loading = false;
-          console.log(err);
-        });
-      },
       meta: { title: '主页', icon: 'basketball' }
     }]
   },
@@ -58,30 +49,21 @@ export const constantRouterMap = [
       path: 'allGame',
       name: 'allGame',
       component: () => import('@/views/game/allGame/allGame'),
-      beforeEnter: (to, from, next) => {
-        store.dispatch('GetAllGame').then((res) => {
-          this.loading = false;
-          next();
-        }).catch((err) => {
-          this.loading = false;
-          console.log(err);
-        });
-      },
+      // beforeEnter: (to, from, next) => {
+      //   store.dispatch('GetAllGame').then((res) => {
+      //     this.loading = false;
+      //     next();
+      //   }).catch((err) => {
+      //     this.loading = false;
+      //     console.log(err);
+      //   });
+      // },
       meta: { title: '所有球局', icon: 'peoples' }
     },
     {
       path: 'myGame',
       name: 'myGame',
       component: () => import('@/views/game/myGame'),
-      beforeEnter: (to, from, next) => {
-        store.dispatch('GetMyGame').then((res) => {
-          this.loading = false;
-          next();
-        }).catch((err) => {
-          this.loading = false;
-          console.log(err);
-        });
-      },
       meta: { title: '我的球局', icon: 'people' }
     }]
   },
@@ -94,30 +76,12 @@ export const constantRouterMap = [
       path: 'allCourt',
       name: 'allCourt',
       component: () => import('@/views/court/allCourt/allCourt'),
-      beforeEnter: (to, from, next) => {
-        store.dispatch('GetAllCourt').then((res) => {
-          this.loading = false;
-          next();
-        }).catch((err) => {
-          this.loading = false;
-          console.log(err);
-        });
-      },
       meta: { title: '所有球场', icon: 'peoples' }
     },
     {
       path: 'myCourt',
       name: 'myCourt',
       component: () => import('@/views/court/myCourt'),
-      beforeEnter: (to, from, next) => {
-        store.dispatch('GetMyCourt').then((res) => {
-          this.loading = false;
-          next();
-        }).catch((err) => {
-          this.loading = false;
-          console.log(err);
-        });
-      },
       meta: { title: '我的球场', icon: 'people' }
     }]
   },

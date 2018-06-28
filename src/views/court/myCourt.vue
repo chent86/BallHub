@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <el-table :data="myCourt_tableInfo" style="width: 100%">
+    <el-table :data="myCourt_tableInfo.slice((currentPage-1)*pagesize,currentPage*pagesize)" style="width: 100%">
       <el-table-column prop="cid" label="编号" width="100">
       </el-table-column>
       <el-table-column prop="location" label="地点">
@@ -10,12 +10,26 @@
       <el-table-column prop="link" label="引用次数" sortable>
       </el-table-column>
     </el-table>
+  <el-pagination
+      small 
+      layout="prev, pager, next"
+      :total="total" 
+      @current-change="current_change"
+      class="page-wrapper">
+  </el-pagination>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
 export default {
+  data() {
+    return {
+      total: 0, // 默认数据总数
+      pagesize: 10, // 每页的数据条数
+      currentPage: 1, // 默认开始页面
+    };
+  },
   methods: {
     formatter(row, column) {
       return row.address;
@@ -41,13 +55,39 @@ export default {
         this.loading = false;
         console.log(err);
       });
+    },
+    current_change(currentPage) {
+      this.currentPage = currentPage;
+    },
+    init() {
+      this.$store.dispatch('GetMyCourt').then((res) => {
+        this.loading = false;
+        this.total = this.myCourt_tableInfo.length * 10 / this.pagesize;
+      }).catch((err) => {
+        this.loading = false;
+        console.log(err);
+      });
     }
   },
   computed: {
     ...mapGetters([
       'myCourt_tableInfo'
     ])
+  },
+  mounted() {
+    this.init();
   }
 };
 </script>
+
+<style rel="stylesheet/scss" lang="scss" scoped>
+.app-container{
+  background: #fff;
+  padding: 16px 16px 50px 16px; 
+  margin: 32px; 
+}
+.page-wrapper{
+  margin-top: 20px;
+}
+</style>
 

@@ -10,7 +10,7 @@ export function getMyCourt() {
 export function getAllCourt() {
   return request({
     url: '/api/getAllCourt',
-    method: 'post'
+    method: 'get'
   });
 }
 

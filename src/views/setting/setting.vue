@@ -4,6 +4,7 @@
         v-for="tab in tabs"
         v-bind:key="tab"
         v-on:click="currentTab = tab"
+        :type="buttonType[tab]"
     >{{ buttonName[tab] }}</el-button>
 
     <component
@@ -27,7 +28,8 @@ export default {
     return {
       currentTab: 'BasisInfo',
       tabs: ['BasisInfo', 'UpdatePassword', 'DeleteUser'],
-      buttonName: { 'BasisInfo': '基本信息', 'UpdatePassword': '修改密码', 'DeleteUser': '注销用户' }
+      buttonName: { 'BasisInfo': '基本信息', 'UpdatePassword': '修改密码', 'DeleteUser': '注销用户' },
+      buttonType: { 'BasisInfo': 'success', 'UpdatePassword': 'warning', 'DeleteUser': 'danger' }
     };
   },
   computed: {
@@ -38,5 +40,11 @@ export default {
 };
 </script>
 
-<style scoped>
+<style rel="stylesheet/scss" lang="scss" scoped>
+.app-container{
+  width: 70%;
+  background: #fff;
+  padding: 16px 16px 16px 16px; 
+  margin: 32px; 
+}
 </style>

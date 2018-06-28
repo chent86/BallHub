@@ -15,7 +15,7 @@
         <el-input v-model="form.price" style="width: 200px;"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="onSubmit">启动！</el-button>
+        <el-button type="primary" @click="onSubmit">添加！</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -36,9 +36,9 @@ export default {
     onSubmit() {
       this.$store.dispatch('AddCourt', this.form).then((res) => {
         this.loading = false;
-        this.form.location = '';
-        this.form.type = '油漆地球场';
-        this.form.price = '';
+        // this.form.location = '';
+        // this.form.type = '油漆地球场';
+        // this.form.price = '';
         if (res === 'ok') {
           this.$message.success('成功添加球场!');
           this.$store.dispatch('GetAllCourt');
