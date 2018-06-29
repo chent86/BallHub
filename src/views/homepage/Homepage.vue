@@ -3,7 +3,7 @@
     <panel-group @handleSetLineChartData="handleSetLineChartData"></panel-group>
 
     <el-row style="background:#fff;padding:16px 16px 0;margin-bottom:32px;">
-      <line-chart :chart-data="lineChartData"></line-chart>
+      <line-chart :chart-data="myResult"></line-chart>
     </el-row>
 
     <el-row :gutter="32">
@@ -33,14 +33,16 @@ import PanelGroup from './components/PanelGroup';
 import RaddarChart from './components/RaddarChart';
 import PieChart from './components/PieChart';
 import BarChart from './components/BarChart';
+import { mapGetters } from 'vuex';
 
 const lineChartData = {
   newVisitis: {
-    expectedData: [100, 120, 161, 134, 105, 160, 165],
-    actualData: [120, 82, 91, 154, 162, 140, 145]
+    expectedData: [100, 120, 161, 134, 105, 160, 140],
+    actualData: [120, 82, 91, 154, 162, 140, 190],
+    testData: [60, 40, 200, 100, 120, 190, 160]
   },
   messages: {
-    expectedData: [200, 192, 120, 144, 160, 130, 140],
+    expectedData: [300, 192, 120, 144, 160, 130, 140],
     actualData: [180, 160, 151, 106, 145, 150, 130]
   },
   purchases: {
@@ -50,6 +52,12 @@ const lineChartData = {
   shoppings: {
     expectedData: [130, 140, 141, 142, 145, 150, 160],
     actualData: [120, 82, 91, 154, 162, 140, 130]
+  },
+  performance: {
+    scoreData: [10, 2, 7, 0, 5, 8, 0],
+    assistData: [5, 6, 8, 2, 10, 5, 7],
+    defendData: [3, 9, 5, 2, 5, 10, 2],
+    reboundData: [10, 8, 9, 5, 6, 4, 3]
   }
 };
 
@@ -64,13 +72,27 @@ export default {
   },
   data() {
     return {
-      lineChartData: lineChartData.newVisitis
+      lineChartData: lineChartData.performance
     };
   },
   methods: {
     handleSetLineChartData(type) {
-      this.lineChartData = lineChartData[type];
+      // this.lineChartData = lineChartData[type];
     }
+  },
+  computed: {
+    ...mapGetters([
+      'myResult'
+    ])
+  },
+  mounted() {
+    // 不使用mounted，而使用路由中的beforeEnter，为了达到曲线逐渐绘制的效果
+    // this.$store.dispatch('GetMyResult').then((res) => {
+    //   this.loading = false;
+    // }).catch((err) => {
+    //   this.loading = false;
+    //   console.log(err);
+    // });
   }
 };
 </script>

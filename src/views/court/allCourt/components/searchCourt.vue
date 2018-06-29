@@ -41,21 +41,6 @@ export default {
       const property = column['property'];
       return row[property] === value;
     },
-    handleJoin(index, row) {
-      this.$store.dispatch('JoinGame', {
-        'gid': row.gid
-      }).then((res) => {
-        if (res === 'ok') {
-          this.$message.success('成功加入球局!');
-          this.$store.dispatch('GetAllGame');
-        } else {
-          this.$message.error('您已在该球局中!');
-        }
-      }).catch((err) => {
-        this.loading = false;
-        console.log(err);
-      });
-    },
     current_change(currentPage) {
       this.currentPage = currentPage;
     },

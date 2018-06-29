@@ -1,13 +1,17 @@
 <template>
   <div class="app-container">
-    <el-table :data="myCourt_tableInfo.slice((currentPage-1)*pagesize,currentPage*pagesize)" style="width: 100%">
-      <el-table-column prop="cid" label="编号" width="100">
+    <el-table :data="myMail_tableInfo.slice((currentPage-1)*pagesize,currentPage*pagesize)" style="width: 100%">
+      <el-table-column prop="mid" label="编号" width="100">
       </el-table-column>
-      <el-table-column prop="location" label="地点">
+      <el-table-column prop="sender" label="发件人">
       </el-table-column>
-      <el-table-column prop="price" label="费用" sortable>
+      <el-table-column prop="message" label="内容">
       </el-table-column>
-      <el-table-column prop="link" label="引用次数" sortable>
+      <el-table-column label="操作">
+        <template slot-scope="scope">
+          <el-button size="mini" type="success" @click="handleYes(scope.$index, scope.row)">好的</el-button>
+          <el-button size="mini" type="danger" @click="handleNo(scope.$index, scope.row)">不了</el-button>
+        </template>
       </el-table-column>
     </el-table>
   <el-pagination
@@ -41,13 +45,31 @@ export default {
       const property = column['property'];
       return row[property] === value;
     },
+    handleYes(index, row) {
+      this.$emit('launch', row);
+    },
+    handleNo(index, row) {
+      this.$store.dispatch('DeleteMail', {
+        'uid': row.uid,
+        'mid': row.mid
+      }).then((res) => {
+        if (res === 'ok') {
+          this.$store.dispatch('GetMyMail');
+        } else {
+          this.$message.error('请求失败!');
+        }
+      }).catch((err) => {
+        this.loading = false;
+        console.log(err);
+      });
+    },
     current_change(currentPage) {
       this.currentPage = currentPage;
     },
     init() {
-      this.$store.dispatch('GetMyCourt').then((res) => {
+      this.$store.dispatch('GetMyMail').then((res) => {
         this.loading = false;
-        this.total = this.myCourt_tableInfo.length * 10 / this.pagesize;
+        this.total = this.myMail_tableInfo.length * 10 / this.pagesize;
       }).catch((err) => {
         this.loading = false;
         console.log(err);
@@ -56,7 +78,7 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'myCourt_tableInfo'
+      'myMail_tableInfo'
     ])
   },
   mounted() {

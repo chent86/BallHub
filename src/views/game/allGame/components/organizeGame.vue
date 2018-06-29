@@ -55,22 +55,25 @@ export default {
   },
   methods: {
     onSubmit() {
-      this.$store.dispatch('OrganizeGame', this.form).then((res) => {
-        this.loading = false;
-        this.form.start_time = '';
-        this.form.end_time = '';
-        this.form.type = '';
-        this.form.number = '';
-        if (res === 'ok') {
-          this.$message.success('成功发起球局!');
-          this.$store.dispatch('GetAllGame');
-        } else {
-          this.$message.error('发起球局失败!');
-        }
-      }).catch((err) => {
-        this.loading = false;
-        console.log(err);
-      });
+      if (this.form.start_time >= this.form.end_time) {
+        this.$message.error('请输入正确的时间');
+      } else {
+        this.$store.dispatch('OrganizeGame', this.form).then((res) => {
+          this.loading = false;
+          this.form.start_time = '';
+          this.form.end_time = '';
+          this.form.type = '';
+          this.form.number = '';
+          if (res === 'ok') {
+            this.$message.success('成功发起球局!');
+          } else {
+            this.$message.error('发起球局失败!');
+          }
+        }).catch((err) => {
+          this.loading = false;
+          console.log(err);
+        });
+      }
     },
     querySearch(queryString, callback) {
       var links = this.links;

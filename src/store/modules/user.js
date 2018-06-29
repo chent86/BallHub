@@ -1,4 +1,4 @@
-import { login, logout, getLoginInfo, register, updateLoginInfo, updatePassword, deleteUser, getMyGame, organizeGame, getAllGame, joinGame, quitGame } from '@/api/console_users';
+import { login, logout, getLoginInfo, register, updateLoginInfo, updatePassword, deleteUser } from '@/api/users';
 
 const user = {
   state: {
@@ -11,9 +11,7 @@ const user = {
       free_time_2: null, // 上午，下午，晚上
       role: null,
       price: null,
-      motto: null,
-      myGame_tableInfo: [],
-      allGame_tableInfo: []
+      motto: null
     },
     auth: false
   },
@@ -48,12 +46,6 @@ const user = {
     },
     SET_AUTH: (state, auth) => {
       state.auth = auth;
-    },
-    SET_MY_GAME_TABLE_INFO: (state, myGame_tableInfo) => {
-      state.info.myGame_tableInfo = myGame_tableInfo;
-    },
-    SET_ALL_GAME_TABLE_INFO: (state, allGame_tableInfo) => {
-      state.info.allGame_tableInfo = allGame_tableInfo;
     }
   },
 
@@ -171,63 +163,6 @@ const user = {
     DeleteUser({ commit }) {
       return new Promise((resolve, reject) => {
         deleteUser().then(response => {
-          resolve(response);
-        }).catch(error => {
-          reject(error);
-        });
-      });
-    },
-
-    // 获取我的球局
-    GetMyGame({ commit }) {
-      return new Promise((resolve, reject) => {
-        getMyGame().then(response => {
-          commit('SET_MY_GAME_TABLE_INFO', response);
-          resolve();
-        }).catch(error => {
-          reject(error);
-        });
-      });
-    },
-
-    // 获取所有球局
-    GetAllGame({ commit }) {
-      return new Promise((resolve, reject) => {
-        getAllGame().then(response => {
-          commit('SET_ALL_GAME_TABLE_INFO', response);
-          resolve();
-        }).catch(error => {
-          reject(error);
-        });
-      });
-    },
-
-    // 发起球局
-    OrganizeGame({ commit }, gameInfo) {
-      return new Promise((resolve, reject) => {
-        organizeGame(gameInfo).then(response => {
-          resolve(response);
-        }).catch(error => {
-          reject(error);
-        });
-      });
-    },
-
-    // 加入球局
-    JoinGame({ commit }, gameInfo) {
-      return new Promise((resolve, reject) => {
-        joinGame(gameInfo).then(response => {
-          resolve(response);
-        }).catch(error => {
-          reject(error);
-        });
-      });
-    },
-
-    // 退出球局
-    QuitGame({ commit }, gameInfo) {
-      return new Promise((resolve, reject) => {
-        quitGame(gameInfo).then(response => {
           resolve(response);
         }).catch(error => {
           reject(error);

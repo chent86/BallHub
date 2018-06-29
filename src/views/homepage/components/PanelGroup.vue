@@ -92,7 +92,7 @@ export default {
         background: #f4516c;
       }
       .icon-shoppingCard {
-        background: #34bfa3
+        background: #d39cf5
       }
     }
     .icon-people {
@@ -105,7 +105,7 @@ export default {
       color: #f4516c;
     }
     .icon-shoppingCard {
-      color: #34bfa3
+      color: #d39cf5
     }
     .card-panel-icon-wrapper {
       float: left;

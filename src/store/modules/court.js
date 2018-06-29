@@ -1,6 +1,6 @@
 import { getMyCourt, getAllCourt, addCourt } from '@/api/court';
 
-const user = {
+const court = {
   state: {
     myCourt_tableInfo: [],
     allCourt_tableInfo: []
@@ -53,4 +53,4 @@ const user = {
   }
 };
 
-export default user;
+export default court;

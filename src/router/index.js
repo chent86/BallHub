@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-// import store from '../store';
+import store from '../store';
 
 // in development-env not use lazy-loading, because lazy-loading too many pages will cause webpack hot update too slow. so only in production use lazy-loading;
 // detail: https://panjiachen.github.io/vue-element-admin-site/#/lazy-loading
@@ -37,6 +37,15 @@ export const constantRouterMap = [
       path: 'dashboard',
       name: 'dashboard',
       component: () => import('@/views/homepage/Homepage'),
+      beforeEnter: (to, from, next) => {
+        store.dispatch('GetMyResult').then((res) => {
+          this.loading = false;
+          next();
+        }).catch((err) => {
+          this.loading = false;
+          console.log(err);
+        });
+      },
       meta: { title: '主页', icon: 'basketball' }
     }]
   },
@@ -83,6 +92,26 @@ export const constantRouterMap = [
       name: 'myCourt',
       component: () => import('@/views/court/myCourt'),
       meta: { title: '我的球场', icon: 'people' }
+    }]
+  },
+
+  {
+    path: '/mail',
+    component: Layout,
+    children: [{
+      path: 'index',
+      name: 'Mail',
+      component: () => import('@/views/mail/mail'),
+      beforeEnter: (to, from, next) => {
+        store.dispatch('SendResultMail').then((res) => {
+          this.loading = false;
+          next();
+        }).catch((err) => {
+          this.loading = false;
+          console.log(err);
+        });
+      },
+      meta: { title: '邮件', icon: 'mail' }
     }]
   },
 

@@ -58,7 +58,6 @@ export default {
       }).then((res) => {
         if (res === 'ok') {
           this.$message.success('成功加入球局!');
-          this.$store.dispatch('GetAllGame');
         } else {
           this.$message.error('您已在该球局中!');
         }

@@ -72,10 +72,10 @@ export default {
     }
   },
   methods: {
-    setOptions({ expectedData, actualData } = {}) {
+    setOptions({ scoreData, assistData, defendData, reboundData } = {}) {
       this.chart.setOption({
         xAxis: {
-          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+          data: ['1', '2', '3', '4', '5', '6', '7'],
           boundaryGap: false,
           axisTick: {
             show: false
@@ -101,41 +101,72 @@ export default {
           }
         },
         legend: {
-          data: ['expected', 'actual']
+          data: ['得分', '助攻', '盖帽', '篮板']
         },
         series: [{
-          name: 'expected', itemStyle: {
+          name: '得分', itemStyle: {
             normal: {
-              color: '#FF005A',
+              color: '#40c9c6',
               lineStyle: {
-                color: '#FF005A',
+                color: '#40c9c6',
                 width: 2
               }
             }
           },
           smooth: true,
           type: 'line',
-          data: expectedData,
+          data: scoreData,
           animationDuration: 2800,
           animationEasing: 'cubicInOut'
         },
         {
-          name: 'actual',
+          name: '助攻',
           smooth: true,
           type: 'line',
           itemStyle: {
             normal: {
-              color: '#3888fa',
+              color: '#36a3f7',
               lineStyle: {
-                color: '#3888fa',
+                color: '#36a3f7',
                 width: 2
-              },
-              areaStyle: {
-                color: '#f3f8ff'
               }
             }
           },
-          data: actualData,
+          data: assistData,
+          animationDuration: 2800,
+          animationEasing: 'quadraticOut'
+        },
+        {
+          name: '盖帽',
+          smooth: true,
+          type: 'line',
+          itemStyle: {
+            normal: {
+              color: '#f4516c',
+              lineStyle: {
+                color: '#f4516c',
+                width: 2
+              }
+            }
+          },
+          data: defendData,
+          animationDuration: 2800,
+          animationEasing: 'cubicInOut'
+        },
+        {
+          name: '篮板',
+          smooth: true,
+          type: 'line',
+          itemStyle: {
+            normal: {
+              color: '#d39cf5',
+              lineStyle: {
+                color: '#d39cf5',
+                width: 2
+              }
+            }
+          },
+          data: reboundData,
           animationDuration: 2800,
           animationEasing: 'quadraticOut'
         }]
