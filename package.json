@@ -1,9 +1,9 @@
 {
-  "name": "matrix-console",
-  "version": "2.0.0",
+  "name": "ballhub",
+  "version": "1.0.0",
   "license": "MIT",
-  "description": "A system of matrix course system for operators",
-  "author": "Matrix Team",
+  "description": "A web application for organizing basketball activity",
+  "author": "ChenTao",
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "mock": "webpack-dev-server --inline --progress --config build/webpack.mock.conf.js",

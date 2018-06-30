@@ -19,7 +19,7 @@ npm start
 
 ## 生产环境部署
 ```
-npm build
+npm run build
 sudo cp -r dist /usr/share/nginx
 ```
 
