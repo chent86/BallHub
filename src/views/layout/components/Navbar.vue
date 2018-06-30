@@ -38,7 +38,7 @@ export default {
     ]),
     avatarSrc() {
       // return `/api/auth/${this.user_id}/avatar`;
-      return `/api/auth/0/avatar`;
+      // return `/api/auth/0/avatar`;
     }
   },
   methods: {
