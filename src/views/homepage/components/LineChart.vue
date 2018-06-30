@@ -134,7 +134,7 @@ export default {
           },
           data: assistData,
           animationDuration: 2800,
-          animationEasing: 'quadraticOut'
+          animationEasing: 'cubicInOut'
         },
         {
           name: '盖帽',
@@ -168,7 +168,8 @@ export default {
           },
           data: reboundData,
           animationDuration: 2800,
-          animationEasing: 'quadraticOut'
+          // animationEasing: 'quadraticOut'
+          animationEasing: 'cubicInOut'
         }]
       });
     },

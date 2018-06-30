@@ -1,4 +1,4 @@
-import { login, logout, getLoginInfo, register, updateLoginInfo, updatePassword, deleteUser } from '@/api/users';
+import { login, logout, getLoginInfo, register, updateLoginInfo, updatePassword, deleteUser, getAllUser } from '@/api/users';
 
 const user = {
   state: {
@@ -13,6 +13,7 @@ const user = {
       price: null,
       motto: null
     },
+    all_user: [],
     auth: false
   },
 
@@ -46,6 +47,9 @@ const user = {
     },
     SET_AUTH: (state, auth) => {
       state.auth = auth;
+    },
+    SET_ALL_USER: (state, all_user) => {
+      state.all_user = all_user;
     }
   },
 
@@ -163,6 +167,18 @@ const user = {
     DeleteUser({ commit }) {
       return new Promise((resolve, reject) => {
         deleteUser().then(response => {
+          resolve(response);
+        }).catch(error => {
+          reject(error);
+        });
+      });
+    },
+
+    // 获取所有用户(用户名和uid)
+    GetAllUser({ commit }) {
+      return new Promise((resolve, reject) => {
+        getAllUser().then(response => {
+          commit('SET_ALL_USER', response);
           resolve(response);
         }).catch(error => {
           reject(error);

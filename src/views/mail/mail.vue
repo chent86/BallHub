@@ -11,11 +11,19 @@
 <script>
 import mailbox from './components/mailbox';
 import resultForm from './components/resultForm';
+import attendMatch from './components/attendMatch';
+import handleApplication from './components/handleApplication';
+import applyResult from './components/applyResult';
+import receivePigeon from './components/receivePigeon';
 
 export default {
   components: {
     mailbox,
-    resultForm
+    resultForm,
+    attendMatch,
+    handleApplication,
+    applyResult,
+    receivePigeon
   },
   data() {
     return {
@@ -30,11 +38,19 @@ export default {
   },
   methods: {
     launch(row) {
+      this.row = row;
       if (row.type === 'result') {
         this.currentTab = 'resultForm';
-        this.row = row;
       } else if (row.type === 'mailbox') {
         this.currentTab = 'mailbox';
+      } else if (row.type === 'invitation') {
+        this.currentTab = 'attendMatch';
+      } else if (row.type === 'apply') {
+        this.currentTab = 'handleApplication';
+      } else if (row.type === 'refuse' || row.type === 'permit') {
+        this.currentTab = 'applyResult';
+      } else if (row.type === 'pigeon') {
+        this.currentTab = 'receivePigeon';
       }
     }
   }

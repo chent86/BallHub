@@ -17,7 +17,7 @@
       </el-table-column>
       <el-table-column label="操作">
         <template slot-scope="scope">
-          <el-button size="mini" type="success" @click="handleJoin(scope.$index, scope.row)">申请加入</el-button>
+          <el-button size="mini" type="success" @click="handleApply(scope.$index, scope.row)">申请加入</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -52,19 +52,31 @@ export default {
       const property = column['property'];
       return row[property] === value;
     },
-    handleJoin(index, row) {
-      this.$store.dispatch('JoinGame', {
+    handleApply(index, row) {
+      this.$store.dispatch('SendApplication', {
         'gid': row.gid
       }).then((res) => {
         if (res === 'ok') {
-          this.$message.success('成功加入球局!');
+          this.$message.success('我像那种会鸽的人吗？');
         } else {
-          this.$message.error('您已在该球局中!');
+          this.$message.error('鸽王走开!');
         }
       }).catch((err) => {
         this.loading = false;
         console.log(err);
       });
+      // this.$store.dispatch('JoinGame', {
+      //   'gid': row.gid
+      // }).then((res) => {
+      //   if (res === 'ok') {
+      //     this.$message.success('成功加入球局!');
+      //   } else {
+      //     this.$message.error('您已在该球局中!');
+      //   }
+      // }).catch((err) => {
+      //   this.loading = false;
+      //   console.log(err);
+      // });
     },
     current_change(currentPage) {
       this.currentPage = currentPage;

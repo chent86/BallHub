@@ -64,3 +64,9 @@ export function deleteUser() {
   });
 }
 
+export function getAllUser() {
+  return request({
+    url: '/api/getAllUser',
+    method: 'get'
+  });
+}

@@ -10,6 +10,7 @@ const getters = {
   price: state => state.user.info.price,
   motto: state => state.user.info.motto,
   auth: state => state.user.auth,
+  all_user: state => state.user.all_user,
   myGame_tableInfo: state => state.game.myGame_tableInfo,
   allGame_tableInfo: state => state.game.allGame_tableInfo,
   myCourt_tableInfo: state => state.court.myCourt_tableInfo,

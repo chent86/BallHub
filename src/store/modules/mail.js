@@ -1,4 +1,4 @@
-import { sendResultMail, getMyMail, deleteMail } from '@/api/mail';
+import { sendResultMail, getMyMail, deleteMail, sendInvitation, sendApplication, sendReply, sendPigeon } from '@/api/mail';
 
 const mail = {
   state: {
@@ -39,6 +39,50 @@ const mail = {
     DeleteMail({ commit }, mailInfo) {
       return new Promise((resolve, reject) => {
         deleteMail(mailInfo).then(response => {
+          resolve(response);
+        }).catch(error => {
+          reject(error);
+        });
+      });
+    },
+
+    // 发出球赛邀请
+    SendInvitation({ commit }, inviteInfo) {
+      return new Promise((resolve, reject) => {
+        sendInvitation(inviteInfo).then(response => {
+          resolve(response);
+        }).catch(error => {
+          reject(error);
+        });
+      });
+    },
+
+    // 发出球赛申请
+    SendApplication({ commit }, applyInfo) {
+      return new Promise((resolve, reject) => {
+        sendApplication(applyInfo).then(response => {
+          resolve(response);
+        }).catch(error => {
+          reject(error);
+        });
+      });
+    },
+
+    // 发出拒绝通知
+    SendReply({ commit }, replyInfo) {
+      return new Promise((resolve, reject) => {
+        sendReply(replyInfo).then(response => {
+          resolve(response);
+        }).catch(error => {
+          reject(error);
+        });
+      });
+    },
+
+    // 发出退赛通知
+    SendPigeon({ commit }, pigeonInfo) {
+      return new Promise((resolve, reject) => {
+        sendPigeon(pigeonInfo).then(response => {
           resolve(response);
         }).catch(error => {
           reject(error);

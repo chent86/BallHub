@@ -23,3 +23,43 @@ export function deleteMail(mailInfo) {
     }
   });
 }
+
+export function sendInvitation(inviteInfo) {
+  return request({
+    url: '/api/sendInvitation',
+    method: 'post',
+    data: {
+      inviteInfo
+    }
+  });
+}
+
+export function sendApplication(applyInfo) {
+  return request({
+    url: '/api/sendApplication',
+    method: 'post',
+    data: {
+      applyInfo
+    }
+  });
+}
+
+export function sendReply(replyInfo) {
+  return request({
+    url: '/api/sendReply',
+    method: 'post',
+    data: {
+      replyInfo
+    }
+  });
+}
+
+export function sendPigeon(pigeonInfo) {
+  return request({
+    url: '/api/sendPigeon',
+    method: 'post',
+    data: {
+      pigeonInfo
+    }
+  });
+}

@@ -66,6 +66,7 @@ export default {
           this.form.number = '';
           if (res === 'ok') {
             this.$message.success('成功发起球局!');
+            this.form.state = '';
           } else {
             this.$message.error('发起球局失败!');
           }
