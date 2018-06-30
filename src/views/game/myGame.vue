@@ -91,7 +91,6 @@ export default {
         'gid': row.gid
       }).then((res) => {
         if (res === 'ok') {
-          this.$message.success('鸽了真爽!');
           this.$store.dispatch('GetMyGame');
           this.$store.dispatch('SendPigeon', {
             'gid': row.gid

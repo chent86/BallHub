@@ -30,6 +30,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 export default {
   props: ['row'],
   data() {
@@ -43,9 +44,15 @@ export default {
       }
     };
   },
+  computed: {
+    ...mapGetters([
+      'username'
+    ])
+  },
   methods: {
     onSubmit() {
       this.$store.dispatch('JoinGame', {
+        'username': this.username,
         'gid': this.row.gid
       }).then((res) => {
         if (res === 'ok') {

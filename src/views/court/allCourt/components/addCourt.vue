@@ -36,9 +36,9 @@ export default {
     onSubmit() {
       this.$store.dispatch('AddCourt', this.form).then((res) => {
         this.loading = false;
-        // this.form.location = '';
-        // this.form.type = '油漆地球场';
-        // this.form.price = '';
+        this.form.location = '';
+        this.form.type = '油漆地球场';
+        this.form.price = '';
         if (res === 'ok') {
           this.$message.success('成功添加球场!');
           this.$store.dispatch('GetAllCourt');

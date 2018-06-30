@@ -47,8 +47,8 @@ const validatePass = (rule, value, callback) => {
 })
 export default class Login extends Vue {
   loginForm = {
-    username: 'chent',
-    password: 'admin'
+    username: '',
+    password: ''
   };
 
   loginRules = {

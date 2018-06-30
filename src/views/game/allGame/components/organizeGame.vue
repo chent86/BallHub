@@ -39,6 +39,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
+var dateFormat = require('dateformat');
 export default {
   data() {
     return {
@@ -55,7 +56,10 @@ export default {
   },
   methods: {
     onSubmit() {
+      console.log();
       if (this.form.start_time >= this.form.end_time) {
+        this.$message.error('请输入正确的时间');
+      } else if (this.form.end_time < dateFormat(new Date(), 'yyyy-mm-dd HH:mm:ss')) {
         this.$message.error('请输入正确的时间');
       } else {
         this.$store.dispatch('OrganizeGame', this.form).then((res) => {
