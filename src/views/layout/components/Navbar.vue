@@ -25,8 +25,14 @@
 import { mapGetters } from 'vuex';
 import Breadcrumb from '@/components/Breadcrumb';
 import Hamburger from '@/components/Hamburger';
+import pigeon from '@/assets/dove.png';
 
 export default {
+  data() {
+    return {
+      pigeon
+    };
+  },
   components: {
     Breadcrumb,
     Hamburger
@@ -39,6 +45,7 @@ export default {
     avatarSrc() {
       // return `/api/auth/${this.user_id}/avatar`;
       // return `/api/auth/0/avatar`;
+      return pigeon;
     }
   },
   methods: {

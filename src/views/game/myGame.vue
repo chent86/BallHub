@@ -110,6 +110,7 @@ export default {
     },
     handleInvite(index, row) {
       this.uid = 0;
+      this.state = 0;
       this.gid = row.gid;
       this.dialogVisible = true;
     },
