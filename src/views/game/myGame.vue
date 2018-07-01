@@ -101,7 +101,7 @@ export default {
             this.dialogVisible = false;
           });
         } else {
-          this.$message.error('当月鸽数已达上限，充值VIP送你一箱鸽子！!！');
+          this.$message.error('请求失败！');
         }
       }).catch((err) => {
         this.loading = false;

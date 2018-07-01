@@ -58,9 +58,11 @@ export default {
     onSubmit() {
       console.log();
       if (this.form.start_time >= this.form.end_time) {
-        this.$message.error('请输入正确的时间');
+        this.$message.error('球赛开始时间不能晚于结束时间');
       } else if (this.form.end_time < dateFormat(new Date(), 'yyyy-mm-dd HH:mm:ss')) {
-        this.$message.error('请输入正确的时间');
+        this.$message.error('球赛结束时间过早');
+      } else if (this.form.cid === 0) {
+        this.$message.error('请选择一个已添加的球场');
       } else {
         this.$store.dispatch('OrganizeGame', this.form).then((res) => {
           this.loading = false;
@@ -68,6 +70,8 @@ export default {
           this.form.end_time = '';
           this.form.type = '';
           this.form.number = '';
+          this.state = '';
+          this.form.cid = 0;
           if (res === 'ok') {
             this.$message.success('成功发起球局!');
             this.form.state = '';

@@ -75,7 +75,7 @@ export default {
   methods: {
     onSubmit() {
       if (this.role === 'referee' && validate(this.price) === 'not a number') {
-        this.$message.error('Price should be number!');
+        this.$message.error('费用请输入数字!');
       } else {
         this.$store.dispatch('UpdateLoginInfo', {
           'name': this.name,

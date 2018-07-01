@@ -57,9 +57,9 @@ export default {
         'gid': row.gid
       }).then((res) => {
         if (res === 'ok') {
-          this.$message.success('我像那种会鸽的人吗？');
+          this.$message.success('成功发出球赛申请！');
         } else {
-          this.$message.error('鸽王走开!');
+          this.$message.error('请求失败!');
         }
       }).catch((err) => {
         this.loading = false;
