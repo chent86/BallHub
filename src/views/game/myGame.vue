@@ -138,7 +138,11 @@ export default {
     init() {
       this.$store.dispatch('GetMyGame').then((res) => {
         this.loading = false;
-        this.total = this.myGame_tableInfo.length * 10 / this.pagesize;
+        if (res === 'error') {
+          this.$message.error('请求失败!');
+        } else {
+          this.total = this.myGame_tableInfo.length * 10 / this.pagesize;
+        }
       }).catch((err) => {
         this.loading = false;
         console.log(err);

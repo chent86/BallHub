@@ -42,6 +42,14 @@ const validatePass = (rule, value, callback) => {
   }
 };
 
+const validateUsername = (rule, value, callback) => {
+  if (value.length === 0) {
+    callback(new Error('请输入用户名'));
+  } else {
+    callback();
+  }
+};
+
 @Component({
   name: 'login'
 })
@@ -52,7 +60,7 @@ export default class Login extends Vue {
   };
 
   loginRules = {
-    username: [{ required: true, trigger: 'blur' }],
+    username: [{ required: true, trigger: 'blur', validator: validateUsername }],
     password: [{ required: true, trigger: 'blur', validator: validatePass }]
   };
 

@@ -57,6 +57,8 @@ export default {
       }).then((res) => {
         if (res === 'ok') {
           this.$message.success('成功加入球局!');
+        } else if (res === 'invalid') {
+          this.$message.error('该球局已结束!');
         } else {
           this.$message.error('您已在该球局中!');
         }
